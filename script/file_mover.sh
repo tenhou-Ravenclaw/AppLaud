@@ -170,7 +170,7 @@ abs_markdown_output_dir="$(cd "${SCRIPT_DIR}" && realpath "${MARKDOWN_OUTPUT_DIR
 abs_audio_dest_dir_for_python="$(cd "${SCRIPT_DIR}" && realpath "${AUDIO_DEST_DIR}")"
 
 echo "Pythonスクリプトを呼び出します: $abs_python_script_path (対象ディレクトリ: $abs_audio_dest_dir_for_python)"
-python3 "$abs_python_script_path" \
+"${PYTHON_CMD:-python3}" "$abs_python_script_path" \
     --audio_processing_dir "$abs_audio_dest_dir_for_python" \
     --markdown_output_dir "$abs_markdown_output_dir" \
     --summary_prompt_file_path "$abs_summary_prompt_file_path" \

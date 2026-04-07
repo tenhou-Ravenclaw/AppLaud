@@ -2,13 +2,20 @@
 
 # --- 設定（すべてexportで環境変数化）---
 
-# --- TODO: Setting ---
-# Google Gemini APIキー
-export GOOGLE_API_KEY="YOUR_GOOGLE_API_KEY"
+# .envファイルからAPIキーを読み込む
+_ENV_FILE="${SCRIPT_DIR}/.env"
+if [ ! -f "$_ENV_FILE" ]; then
+    echo "エラー: .envファイルが見つかりません: $_ENV_FILE" >&2
+    echo "script/.env.example をコピーして script/.env を作成し、APIキーを設定してください。" >&2
+    exit 1
+fi
+set -a
+source "$_ENV_FILE"
+set +a
 
 # --- TODO: Setting ---
 # 監視するボイスレコーダーのボリューム名
-export RECORDER_NAME="RECORDER"
+export RECORDER_NAME="NO NAME"
 
 # --- TODO: Setting ---
 # 音声ファイルが格納されているUSBデバイス内のサブディレクトリ名
@@ -16,11 +23,7 @@ export VOICE_FILES_SUBDIR="RECORD"
 
 # --- TODO: Setting ---
 # 音声ファイルを移動する先のローカルディレクトリ
-export AUDIO_DEST_DIR="/path/to/audio"
-
-# --- TODO: Setting ---
-# Markdown要約ファイルを出力する先のローカルディレクトリ
-export MARKDOWN_OUTPUT_DIR="/path/to/markdown_output"
+export AUDIO_DEST_DIR="../audio"
 
 # --- TODO: Setting ---
 # 実行するPythonスクリプトのパス
@@ -40,11 +43,14 @@ export TARGET_EXTENSIONS_ARRAY=(-iname '*.wav' -o -iname '*.mp3' -o -iname '*.m4
 
 # --- TODO: Setting ---
 # ステータス管理ファイル
-export STATUS_FILE_PATH="/path/to/processing_status.jsonl"
+export STATUS_FILE_PATH="../processing_status.jsonl"
 
 # --- TODO: Setting ---
 # プロンプトテンプレートファイル
 export PROMPT_TEMPLATE_PATH="../prompt/template.txt"
+
+# script/config.sh の中
+export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 
 # --- ここまで設定 ---
 

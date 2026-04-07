@@ -313,7 +313,7 @@ def main():
         return
 
     genai.configure(api_key=api_key)
-    model = genai.GenerativeModel("gemini-1.5-flash")  # Using recommended model
+    model = genai.GenerativeModel("gemini-2.5-flash")  # Using recommended model
 
     processing_dir = pathlib.Path(args.audio_processing_dir)
     markdown_output_dir = pathlib.Path(args.markdown_output_dir)
